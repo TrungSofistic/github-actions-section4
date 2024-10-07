@@ -1,8 +1,24 @@
-name: Events Demo 1
+# notice keyword types: Using Event Types
+# notice keyword 'branches', 'branches-ignore', 'paths': Using Event Filters
+name: Events Types & Filters
 on:
   pull_request:
     types: [opened, edited]
+    branches:
+      - master
+      - "dev-*" # example: dev-1, dev-2, dev-new,
+      - "feat/**" # example: feat/new, feat/new/buttons
+    branches-ignore:
+      - "feat/old" # example: feat/old, feat/old/buttons
   workflow_dispatch:
+  push:
+    branches:
+      - master
+      - "dev-*" # example: dev-1, dev-2, dev-new,
+      - "feat/**" # example: feat/new, feat/new/buttons
+    paths:
+      - "src/**" # example: src/index.js, src/components/button.js
+      - "public/**" # example: public/index.html
 jobs:
   deploy:
     runs-on: ubuntu-latest
